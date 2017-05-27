@@ -4,7 +4,7 @@ Figaro is a utility which can be used to update environment specific application
 
 Any line in your project files which starts with the expected token format (`@@<token-id>`) will be replaced with a predefined text. These **token-ids** and their respective values can be configured as follows:
 
-*Note: **token-ids** can have either a single replacement value or multiple environment-specific replacement values*
+Note: **token-ids** can have either a single replacement value or multiple environment-specific replacement values
 
 Create a configuration file named `figaro.json` in your classpath. Here's a sample configuration file.
 ```javascript
