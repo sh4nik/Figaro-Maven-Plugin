@@ -21,7 +21,6 @@ Create a configuration file named `figaro.json` in your classpath. Here's a samp
       "configs": {
         "db.host": {
           "dev": "db.host=devsvr",
-          "qa": "db.host=qasvr",
           "prod": "db.host=prodsvr"
         }
     }
@@ -29,26 +28,62 @@ Create a configuration file named `figaro.json` in your classpath. Here's a samp
 }
 ```
 
-To enable Figaro in your application, add the maven plugin to your `pom.xml` file as follows:
+To enable Figaro in your application:
+  * Create build profiles for each of your environments in your Maven `pom.xml` file
+  * Add the plugin to each of them passing the relevant environment name
+  
+When building your project, if you do not specify the required profile (ex: `mvn -Pprod install`) the default profile (**dev** in the following example) will be executed.
+
 ```xml
-<build>
-	<plugins>
-	  <plugin>
-		<groupId>com.virtusa.gto</groupId>
-		<artifactId>figaro-maven-plugin</artifactId>
-		<version>1.0-SNAPSHOT</version>
-		<executions>
-		  <execution>
-			<phase>compile</phase>
-			<configuration>
-				<env>prod</env>
-			</configuration>
-			<goals>
-			  <goal>run</goal>
-			</goals>
-		  </execution>
-		</executions>
-	  </plugin>
-	</plugins>
-</build>
+<profiles>
+   <profile>
+      <id>dev</id>
+      <activation>
+         <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+         <plugins>
+            <plugin>
+               <groupId>com.virtusa.gto</groupId>
+               <artifactId>figaro-maven-plugin</artifactId>
+               <version>1.0-SNAPSHOT</version>
+               <executions>
+                  <execution>
+                     <phase>compile</phase>
+                     <configuration>
+                        <env>dev</env>
+                     </configuration>
+                     <goals>
+                        <goal>run</goal>
+                     </goals>
+                  </execution>
+               </executions>
+            </plugin>
+         </plugins>
+      </build>
+   </profile>
+   <profile>
+      <id>prod</id>
+      <build>
+         <plugins>
+            <plugin>
+               <groupId>com.virtusa.gto</groupId>
+               <artifactId>figaro-maven-plugin</artifactId>
+               <version>1.0-SNAPSHOT</version>
+               <executions>
+                  <execution>
+                     <phase>compile</phase>
+                     <configuration>
+                        <env>prod</env>
+                     </configuration>
+                     <goals>
+                        <goal>run</goal>
+                     </goals>
+                  </execution>
+               </executions>
+            </plugin>
+         </plugins>
+      </build>
+   </profile>
+</profiles>
 ```
