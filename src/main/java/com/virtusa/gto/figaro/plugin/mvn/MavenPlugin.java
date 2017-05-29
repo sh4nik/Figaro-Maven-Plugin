@@ -10,7 +10,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 public class MavenPlugin extends AbstractMojo {
     
     /**
-     * @parameter expression="${run.env}"
+     * @parameter property="env"
      */
     private String env;
 

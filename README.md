@@ -2,7 +2,9 @@
 
 Figaro is a utility which can be used to update environment specific application configurations at build-time.
 
-Any line in your project files which starts with the expected token format (`@@<token-id>`) will be replaced with a predefined text. These **token-ids** and their respective values can be configured as follows:
+How to use:
+  * First, replace your environment specific configurations with a token in the form of `@@[<token-id>]` (example: **@@[db.user]**)
+  * Next, configure their respective replacement values as follows:
 
 Note: **token-ids** can have either a single replacement value or multiple environment-specific replacement values
 
@@ -13,25 +15,25 @@ Create a configuration file named `figaro.json` in your classpath. Here's a samp
    {
       "path": "dummy_app/web_component/conf/context.xml",
       "configs": {
-        "xfilepath": "<entry path=\"myfolder/otherfolder/file.ext\">"
+        "xfilepath": "myfolder/otherfolder/file.ext"
       }
     },
     {
       "path": "dummy_app/scheduler/db.properties",
       "configs": {
-        "db.host": {
-          "dev": "db.host=devsvr",
-          "prod": "db.host=prodsvr"
+        "db.user": {
+          "dev": "devuser",
+          "prod": "produser"
         }
     }
   ]
 }
 ```
 
-To enable Figaro in your application:
+How to enable Figaro in your application:
   * Create build profiles for each of your environments in your Maven `pom.xml` file
   * Add the plugin to each of them passing the relevant environment name
-  
+
 When building your project, if you do not specify the required profile (ex: `mvn -Pprod install`) the default profile (**dev** in the following example) will be executed.
 
 ```xml

@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>com.virtusa.gto</groupId>
-            <artifactId>figaro</artifactId>
+            <artifactId>figaro-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
