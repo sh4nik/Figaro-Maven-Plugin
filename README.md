@@ -3,10 +3,10 @@
 Figaro is a utility which can be used to update environment specific application configurations at build-time.
 
 How to use:
-  * First, replace your environment specific configurations with a token in the form of `@@[<token-id>]` (example: **@@[db.user]**)
+  * First, replace your environment specific configurations with a token in the form of `@@[<config-name>]` (example: **@@[db.user]**)
   * Next, configure their respective replacement values as follows:
 
-Note: **token-ids** can have either a single replacement value or multiple environment-specific replacement values
+Note: These tokens can have either a single replacement value or multiple environment-specific replacement values
 
 Create a configuration file named `figaro.json` in your classpath. Here's a sample configuration file.
 ```javascript
